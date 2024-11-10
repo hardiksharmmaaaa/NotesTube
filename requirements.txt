@@ -1,0 +1,5 @@
+streamlit 
+Google-generativeai
+youtube_transcript_api # python API to allow you to get the transcript for a given youtube video
+pathlib
+python-dotenv
