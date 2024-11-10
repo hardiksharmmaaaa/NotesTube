@@ -67,22 +67,12 @@ Install the following libraries:
 - `youtube-transcript-api`
 - `reportlab`
 
-## Sample Screenshots
-
-| Screenshot | Description |
-|------------|-------------|
-| ![Main Screen](screenshots/main_screen.png) | Main screen with video link input and thumbnail display |
-| ![Summary Screen](screenshots/summary_screen.png) | Summarized notes with the option to download as PDF |
 
 ## Contributing
 
 Feel free to fork the repository, create a new branch, and submit pull requests. For major changes, open an issue to discuss your ideas.
 
-## License
-
-This project is open-source and available under the [MIT License](LICENSE).
-
 ## Contact
 
-For any questions or feedback, reach out to [your-email@example.com].
+For any questions or feedback, reach out to [hardiksharmaa007@gmail.com].
 
