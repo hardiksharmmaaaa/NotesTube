@@ -13,7 +13,30 @@ from youtube_transcript_api import YouTubeTranscriptApi  # Retrieve transcript o
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Prompt to guide the summarizer model
-prompt = "Summarize this YouTube video transcript in clear bullet points within 250 words."
+prompt = '''
+Analyze this YouTube video transcript to generate high-level notes suitable for exam preparation.
+Capture essential concepts, main arguments, and actionable insights, ensuring viewers can grasp the content's core
+ideas without watching the entire video. Structure the notes in organized bullet points, using straightforward, concise language.
+Include examples and key takeaways where relevant.
+
+For instance:
+
+Introduction to Topic: Briefly outline the topic and its relevance (e.g., "Machine Learning: Understanding how algorithms learn patterns from data").
+
+Key Concept 1: Main idea with a short explanation (e.g., "Supervised Learning: Training a model using labeled data to predict outcomes").
+
+Important Principle/Insight: Practical applications or essential principles,
+especially useful for exams (e.g., "Overfitting: Occurs when a model is too complex, performing well on training data but poorly on unseen data").
+
+Step-by-Step Process: Breakdown of any major steps or methods mentioned (e.g., "Steps for Cross-Validation: Split data, train on each subset, test, and average the results").
+
+Examples or Case Studies: Real-world examples mentioned, if any (e.g., "Image recognition in medical diagnostics").
+
+Key Takeaway: Summarize any critical learning points or memorable insights for easier recall.
+
+Organize the summary in this way, focusing on clarity and usefulness for someone studying for exams.
+
+'''
 
 # Function to extract transcript from YouTube video
 def extract_transcript(url):
@@ -51,12 +74,16 @@ def generate_pdf(summary):
     return buffer
 
 # Streamlit App Interface
+
+# Display the logo at the top of the app
+st.image("logo.png", width=150)  # Adjust the path and width as necessary
+
 st.title("NotesTube - YouTube Transcript to Detailed Notes Converter")
 yt_link = st.text_input("Enter the YouTube Video Link")
 
 if yt_link:
     video_id = yt_link.split("=")[1]
-    st.image(f"https://img.youtube.com/vi/{video_id}/0.jpg", use_column_width=True)
+    st.image(f"https://img.youtube.com/vi/{video_id}/0.jpg", use_container_width=True)  # Updated here
 
 if st.button("Get Detailed Notes"):
     transcript_text = extract_transcript(yt_link)
