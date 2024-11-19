@@ -12,6 +12,20 @@ from youtube_transcript_api import YouTubeTranscriptApi  # Retrieve transcript o
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
+# Inline CSS for background gradient
+st.markdown(
+    """
+    <style>
+    html, body, [data-testid="stAppViewContainer"] {
+        background: linear-gradient(to bottom,#e5e4e2 , #91a3b0 );
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Prompt to guide the summarizer model
 prompt = '''
 Analyze this YouTube video transcript to generate high-level notes suitable for exam preparation.
@@ -35,7 +49,6 @@ Examples or Case Studies: Real-world examples mentioned, if any (e.g., "Image re
 Key Takeaway: Summarize any critical learning points or memorable insights for easier recall.
 
 Organize the summary in this way, focusing on clarity and usefulness for someone studying for exams.
-
 '''
 
 # Function to extract transcript from YouTube video
@@ -83,7 +96,7 @@ yt_link = st.text_input("Enter the YouTube Video Link")
 
 if yt_link:
     video_id = yt_link.split("=")[1]
-    st.image(f"https://img.youtube.com/vi/{video_id}/0.jpg", use_container_width=True)  # Updated here
+    st.image(f"https://img.youtube.com/vi/{video_id}/0.jpg", use_container_width=True)
 
 if st.button("Get Detailed Notes"):
     transcript_text = extract_transcript(yt_link)
